@@ -1,16 +1,21 @@
 <template>
   <div class="container">
-    <form action="/api/upload" method="post" enctype="multipart/form-data" class="form">
+    <form action="/api/upload" method="post" enctype="multipart/form-data" class="form" ref="form">
       <van-uploader
         v-model="formList.fileList"
         :max-count="1"
         :before-read="beforeRead"
-        :after-read="afterRead"
         preview-size="4.5rem"
         upload-text="请上传图片"
       />
       <van-field v-model="formList.name" placeholder="请输入姓名" />
-      <van-button type="primary" native-type="submit" round icon="upgrade">确认上传</van-button>
+      <van-button
+        type="primary"
+        native-type="submit"
+        round
+        icon="upgrade"
+        @click.prevent="handleUpload(formList.fileList)"
+      >确认上传</van-button>
     </form>
   </div>
 </template>
@@ -39,9 +44,36 @@ export default {
       }
       return file;
     },
-    afterRead(file) {
+    handleUpload(filelist) {
+      let that = this;
       let formData = new FormData();
-      formData.append("file", file.file);
+      if (filelist.length === 0 || !this.formList.name) {
+        this.$toast.fail({
+          message: "请填写您的\n完整信息",
+          duration: 1500
+        });
+      } else {
+        formData.append("file", filelist[0].file);
+        formData.append("name", this.formList.name);
+        // this.$axios({
+        //   method:'post',
+        //   url:'',
+        //   data:formData,
+        //   headers: {
+        //     "Content-Type": "multipart/form-data"
+        //   }
+        // }).then((result) => {
+        //   if(result.data.status===200){
+        //     this.$toast.success({
+        //       message:'上传成功\n请等待审核',
+        //       duration:1500,
+        //       onClose(){
+        //         that.$router.replace('/index')
+        //       }
+        //     })
+        //   }
+        // })
+      }
     }
   }
 };
@@ -65,6 +97,6 @@ form button {
 .van-cell {
   width: 4.5rem;
   border-bottom: 0.04rem solid #99ccff;
-  border-radius: .2rem;
+  border-radius: 0.2rem;
 }
 </style>
