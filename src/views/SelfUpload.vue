@@ -1,18 +1,19 @@
 <template>
-  <div class="container">
-      <van-panel v-for="item in list" :key="item.id" :title="item.name" :desc="item.reply" @click="goDetail(item.id)">
-        <div class="content">
-          <img v-lazy="item.src" width="100%" height="100%" />
+  <div class="scontainer">
+    <div class="list" v-for="item in list" :key="item.id" @click="goDetail(item.id)">
+      <div class="list-img">
+        <van-image width="100%" height="100%" fit="cover" :src="item.src" />
+      </div>
+      <div class="list-item">
+        <div class="item-title">{{item.name}}</div>
+        <div class="item-info">{{item.reply}}</div>
+        <div class="item-comment">{{item.answer}}</div>
+        <div class="item-check">
+          <img v-if="item.isCheck" src="../assets/imgs/checked.png" />
+          <img v-else src="../assets/imgs/checking.png" >
         </div>
-        <div slot="footer" class="foot">
-          <div class="comment">{{item.answer}}</div>
-          <div class="like" >
-            <img v-if="!item.isLike" src="../assets/imgs/heart.png" />
-            <img v-else src="../assets/imgs/heart_a.png" />
-            <span>{{item.good}}</span>
-          </div>
-        </div>
-      </van-panel>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,7 +31,7 @@ export default {
           src: "https://img.yzcdn.cn/vant/apple-1.jpg",
           answer:
             "很好阿萨打扫打扫的撒阿斯打扫打扫打扫大所大所阿萨斯大所大所大所大所大所",
-          isLike: false
+          isCheck: false
         },
         {
           id: 2,
@@ -39,7 +40,7 @@ export default {
           good: 123,
           src: "https://img.yzcdn.cn/vant/apple-2.jpg",
           answer: "很好阿萨打扫打扫的撒",
-          isLike: true
+          isCheck: true
         },
         {
           id: 3,
@@ -48,54 +49,55 @@ export default {
           good: 123,
           src: "https://img.yzcdn.cn/vant/apple-2.jpg",
           answer: "很好阿萨打扫打扫的撒",
-          isLike: false
+          isCheck: false
         }
       ]
     };
   },
   methods: {
-    goDetail(id){
-      this.$router.push('/detail/'+id)
+    goDetail(id) {
+      this.$router.push("/detail/" + id);
     }
-  },
+  }
 };
 </script>
 
 <style scoped>
-.van-cell,
-.van-cell__label {
-  font-size: .32rem;
-  border-radius: .2rem;
+.scontainer {
+  padding: 0 0 0.2rem;
 }
-.van-panel {
-  margin-bottom: 0.4rem;
-  border: .02rem solid #f5f5f5;
-  border-radius: 0.2rem;
-  box-shadow: 0 .04rem .24rem 0 rgba(0, 0, 0, 0.1);
-}
-.van-panel__footer {
-  padding-right: 0.2rem;
-}
-.content {
-  width: 100%;
-}
-.foot {
+.list {
+  padding: 0.2rem 0;
+  background-color: #fff;
+  margin-bottom: 0.2rem;
   display: flex;
-  align-items: center;
+  position: relative;
 }
-.like {
-  float: right;
-  width: 0.8rem;
-  text-align: center;
+.list:focus, .list:active{
+  background-color: #6699CC;
 }
-.like img {
-  width: 0.64rem;
+.list-img {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.2rem;
 }
-.comment {
+.list-item {
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  padding-right: 0.1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+}
+.item-info {
+  color: #909399;
+  font-size: 0.28rem;
+  padding-bottom: 0.06rem;
+  border-bottom: 0.02rem solid #ccc;
+}
+.item-comment {
+  margin-top: 0.1rem;
+}
+.item-check{
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 </style>

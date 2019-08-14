@@ -16,7 +16,7 @@ export default [
     {
         path:'/upload',
         name:'Upload',
-        component:()=> import ('../components/uploader/Upload.vue')
+        component:()=> import ('../components/Upload.vue')
     },
     {
         path:'/detail/:id',
@@ -32,5 +32,10 @@ export default [
         path:'/self',
         name:'/SelfUpload',
         component:()=>import('../views/SelfUpload.vue')
+    },
+    {
+        path:'/code',
+        name:'Code',
+        component:()=>import('../components/Code.vue')
     }
 ]

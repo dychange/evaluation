@@ -9,24 +9,32 @@
       finished-text="没有更多了"
       :immediate-check="false"
     >
-      <van-panel v-for="item in list" :key="item.id" :title="item.name" :desc="item.reply" @click="goDetail(item.id)">
-        <div class="content">
-          <img v-lazy="item.src" width="100%" height="100%" />
-        </div>
-        <div slot="footer" class="foot">
-          <div class="comment">{{item.answer}}</div>
-          <div class="like" @click.stop="handleLike(item)">
-            <img v-if="!item.isLike" src="../assets/imgs/heart.png" />
-            <img v-else src="../assets/imgs/heart_a.png" />
-            <span>{{item.good}}</span>
+        <van-panel
+          v-for="item in list"
+          :key="item.id"
+          :title="item.name"
+          :desc="item.reply"
+          @click="goDetail(item.id)"
+        >
+          <div class="content">
+            <img v-lazy="item.src" width="100%" height="100%" />
           </div>
-        </div>
-      </van-panel>
+          <div slot="footer" class="foot">
+            <div class="comment">{{item.answer}}</div>
+            <div class="like" @click.stop="handleLike(item)">
+              <img v-if="!item.isLike" src="../assets/imgs/heart.png" />
+              <img v-else src="../assets/imgs/heart_a.png" />
+              <span>{{item.good}}</span>
+            </div>
+          </div>
+        </van-panel>
     </van-list>
+    <van-button type="primary" round icon="plus" class="upload" to="/upload">上传你的作品</van-button>
   </div>
 </template>
 
 <script>
+import {eventBus} from '../main'
 export default {
   name: "home",
   data() {
@@ -79,24 +87,24 @@ export default {
         item.good += 1;
       }
     },
-    goDetail(id){
-      this.$router.push('/detail/'+id)
+    goDetail(id) {
+      this.$router.push("/detail/" + id);
     }
-  },
+  }
 };
 </script>
 
 <style scoped>
 .van-cell,
 .van-cell__label {
-  font-size: .32rem;
-  border-radius: .2rem;
+  font-size: 0.32rem;
+  border-radius: 0.2rem;
 }
 .van-panel {
   margin-bottom: 0.4rem;
-  border: .02rem solid #f5f5f5;
+  border: 0.02rem solid #f5f5f5;
   border-radius: 0.2rem;
-  box-shadow: 0 .04rem .24rem 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.04rem 0.24rem 0 rgba(0, 0, 0, 0.1);
 }
 .van-panel__footer {
   padding-right: 0.2rem;
@@ -122,5 +130,12 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.upload {
+  width: 3rem;
+  position: fixed;
+  bottom: 0.3rem;
+  left: 50%;
+  margin-left: -1.5rem;
 }
 </style>

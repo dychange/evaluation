@@ -30,7 +30,10 @@ export default {
         isLike: false
       }
     };
-  }
+  },
+  created() {
+
+  },
 };
 </script>
 

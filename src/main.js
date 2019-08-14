@@ -14,6 +14,7 @@ Vue.use(Vant)
 Vue.prototype.$axios=axios
 Vue.use(Lazyload);
 
+
 new Vue({
   router,
   render: h => h(App)

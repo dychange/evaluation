@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './routes'
-import {getUserInfoMessage} from '../utils/localStorage'
+// import {getUserInfoMessage} from '../utils/localStorage'
 
 Vue.use(Router)
 
@@ -13,7 +13,7 @@ Vue.use(Router)
 })
 
 // router.beforeEach((to, from, next) => {
-//       if(!getUserInfoMessage('userInfo') && to.path!=='/museumwx/author'){
+//       if(!sessionStorage.getItem('userInfo') && to.path!=='/museumwx/author'){
 //         if(to.path.indexOf('code-') == -1){
 //           if(to.fullPath.indexOf('?')>-1){
 //             let path= to.fullPath.substring(to.fullPath.lastIndexOf('/')+1,to.fullPath.indexOf('?'))

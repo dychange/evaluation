@@ -1,4 +1,4 @@
-import weui from 'weui.js'
+import { Notify } from 'vant';
 const axios = require('axios')
 const {baseURL} = require('./index')
 
@@ -33,7 +33,11 @@ class HttpRequest {
             return res
         }, err => {
             if(err.response.status === 500){
-                weui.topTips('服务器繁忙.')
+                Notify({
+                    message: '服务器繁忙',
+                    duration: 1500,
+                    background: '#FF0000'
+                  });
             }
            return Promise.reject(err)
         })
