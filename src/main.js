@@ -5,6 +5,7 @@ import fastClick from 'fastclick'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 import './assets/css/normalize.css'
+import './assets/css/iconfont.css'
 import axios from 'axios'
 import {Lazyload} from 'vant'
 

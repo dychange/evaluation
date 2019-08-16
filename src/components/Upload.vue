@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form action="/api/upload" method="post" enctype="multipart/form-data" class="form" ref="form">
+    <div class="form">
       <van-uploader
         v-model="formList.fileList"
         :max-count="1"
@@ -9,18 +9,13 @@
         upload-text="请上传图片"
       />
       <van-field v-model="formList.name" placeholder="请输入姓名" />
-      <van-button
-        type="primary"
-        native-type="submit"
-        round
-        icon="upgrade"
-        @click.prevent="handleUpload(formList.fileList)"
-      >确认上传</van-button>
-    </form>
+      <van-button type="primary" round icon="upgrade" @click="handleUpload(formList.fileList)">确认上传</van-button>
+    </div>
   </div>
 </template>
 
 <script>
+import { userUpload } from "../api/list";
 export default {
   name: "Upload",
   data() {
@@ -55,24 +50,15 @@ export default {
       } else {
         formData.append("file", filelist[0].file);
         formData.append("name", this.formList.name);
-        // this.$axios({
-        //   method:'post',
-        //   url:'',
-        //   data:formData,
-        //   headers: {
-        //     "Content-Type": "multipart/form-data"
-        //   }
-        // }).then((result) => {
-        //   if(result.data.status===200){
+        // userUpload(formData).then(result => {
+        //   if (result.data.status === 200) {
         //     this.$toast.success({
-        //       message:'上传成功\n请等待审核',
-        //       duration:1500,
-        //       onClose(){
-        //         that.$router.replace('/index')
-        //       }
-        //     })
+        //       message: "上传成功\n请等待审核",
+        //       duration: 1500
+        //     });
+        //     this.$router.replace("/index");
         //   }
-        // })
+        // });
       }
     }
   }
@@ -90,7 +76,7 @@ export default {
 .van-uploader >>> .van-uploader__preview {
   margin: 0 0 0.6rem 0;
 }
-form button {
+.van-button {
   width: 4.5rem;
   margin-top: 2rem;
 }

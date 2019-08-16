@@ -22,7 +22,11 @@ class HttpRequest {
         //  请求拦截
         instance.interceptors.request.use(config => {
             console.log('请求拦截：',config)
-          
+        //   if(config.url.endsWith('')){
+            // config.headers={
+            //     "Content-Type": "multipart/form-data"
+            // }
+        //   }
             return config
         }, err => {
             return Promise.reject(err)

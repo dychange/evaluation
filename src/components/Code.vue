@@ -1,10 +1,10 @@
 <template>
-  <div class="container" v-lazy:backgroundImage='bgImg'>
+  <div class="container">
     <div class="header">
-      <img v-lazy="titleImg">
+      <img v-lazy="titleImg" />
       <div class="title">心标杆教育</div>
     </div>
-    <img class="code" :src="codeImg" >
+    <img class="code" :src="codeImg" />
   </div>
 </template>
 
@@ -14,24 +14,17 @@ export default {
   data() {
     return {
       codeImg: "",
-      titleImg: '',
-      bgImg:''
+      titleImg: "",
+      bgImg: ""
     };
   },
-    created() {
-      let id =this.$route.params.id
-      getCode({id}).then((result) => {
-        if(result.data.status===200){
-            this.codeImg=result.data.info
-        }
-      })
-      getDomain().then((result) => {
-        if(result.data.status===200){
-          this.titleImg=result.data.info+'important/wxtitle.jpg'
-          this.bgImg=result.data.info+'important/code.jpg'
-        }
-      })
-    },
+  created() {
+    // getCode().then((result) => {
+    //   if(result.data.status===200){
+    //       this.codeImg=result.data.info
+    //   }
+    // })
+  }
 };
 </script>
 
@@ -39,8 +32,7 @@ export default {
 .container {
   height: 100%;
   width: 100%;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background: url("") no-repeat center center;
   background-size: 100% 100%;
   position: relative;
 }

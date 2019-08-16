@@ -5,16 +5,27 @@
     </div>
     <div class="author">
       <span>{{detailInfo.name}}</span>
-      <div>{{detailInfo.reply}}</div>
     </div>
     <div class="comment">
-      <h4>导师评论</h4>
-      <p>{{detailInfo.answer}}</p>
+      <h4>绘画心理分析</h4>
+      <div>{{detailInfo.answer}}</div>
+    </div>
+    <div class="analysis">
+      <h4>维度分析</h4>
+      <div class="analysis-item">
+        <div><i class="iconfont">&#xe61d;</i>色彩：<span></span></div>
+        <div><i class="iconfont">&#xe62f;</i>构图：<span></span></div>
+        <div><i class="iconfont">&#xe624;</i>笔触：<span></span></div>
+        <div><i class="iconfont">&#xe82b;</i>造型：<span></span></div>
+        <div><i class="iconfont">&#xe63a;</i>空间：<span></span></div>
+        <div><i class="iconfont">&#xe65f;</i>创意：<span></span></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import {getListDetail} from '../api/list'
 export default {
   name: "Detail",
   data() {
@@ -38,6 +49,9 @@ export default {
 </script>
 
 <style scoped>
+h4{
+  margin:0 0 .3rem ;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -61,17 +75,29 @@ export default {
   border: 0.02rem solid #f5f5f5;
 }
 .author,
-.comment {
+.comment,
+.analysis {
   padding: 0.2rem;
 }
 .author {
   border-bottom: 0.02rem solid #ccc;
 }
-.author div {
-  font-size: 0.28rem;
-  color: #909399;
-}
-.comment p{
+
+.comment div{
     text-align: justify;
+}
+.analysis-item{
+  display: flex;
+  flex-direction: column;
+}
+.analysis-item div{
+  margin-bottom: .2rem;
+}
+.analysis-item .iconfont{
+  color: #99ccff;
+}
+.analysis-item span{
+  color: #909399;
+  font-size: .3rem;
 }
 </style>

@@ -16,7 +16,7 @@ const getListDetail=(data)=>{
     })
 }
 
-const getUserList=(data)=>{
+const userUpload=(data)=>{
     return axios.request({
         url:'',
         method:'post',
@@ -27,5 +27,5 @@ const getUserList=(data)=>{
 export {
     getList,
     getListDetail,
-    getUserList
+    userUpload
 }

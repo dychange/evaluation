@@ -8,13 +8,6 @@ const getCode=(data)=>{
     })
 }
 
-const wxJsSdk=(data)=>{
-    return axios.request({
-        url:'/wechat/jsSdk',
-        method:'post',
-        data
-    })
-}
 
 const getDomain=(data)=>{
     return axios.request({
@@ -26,6 +19,5 @@ const getDomain=(data)=>{
 
 export {
     getCode,
-    wxJsSdk,
     getDomain
 }

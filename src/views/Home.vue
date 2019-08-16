@@ -20,21 +20,17 @@
             <img v-lazy="item.src" width="100%" height="100%" />
           </div>
           <div slot="footer" class="foot">
+            <h4>绘画心理分析：</h4>
             <div class="comment">{{item.answer}}</div>
-            <div class="like" @click.stop="handleLike(item)">
-              <img v-if="!item.isLike" src="../assets/imgs/heart.png" />
-              <img v-else src="../assets/imgs/heart_a.png" />
-              <span>{{item.good}}</span>
-            </div>
           </div>
         </van-panel>
     </van-list>
-    <van-button type="primary" round icon="plus" class="upload" to="/upload">上传你的作品</van-button>
+    <van-button type="primary" round icon="plus" class="upload" to="/psychology/upload">上传你的作品</van-button>
   </div>
 </template>
 
 <script>
-import {eventBus} from '../main'
+import {getList} from '../api/list'
 export default {
   name: "home",
   data() {
@@ -78,17 +74,8 @@ export default {
     onLoad() {
       this.loading = false;
     },
-    handleLike(item) {
-      if (item.isLike) {
-        item.isLike = false;
-        item.good -= 1;
-      } else {
-        item.isLike = true;
-        item.good += 1;
-      }
-    },
     goDetail(id) {
-      this.$router.push("/detail/" + id);
+      this.$router.push("/psychology/detail/" + id);
     }
   }
 };
@@ -102,7 +89,6 @@ export default {
 }
 .van-panel {
   margin-bottom: 0.4rem;
-  border: 0.02rem solid #f5f5f5;
   border-radius: 0.2rem;
   box-shadow: 0 0.04rem 0.24rem 0 rgba(0, 0, 0, 0.1);
 }
@@ -114,15 +100,10 @@ export default {
 }
 .foot {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
-.like {
-  float: right;
-  width: 0.8rem;
-  text-align: center;
-}
-.like img {
-  width: 0.64rem;
+h4{
+  margin: 0 0 .1rem;
 }
 .comment {
   flex: 1;

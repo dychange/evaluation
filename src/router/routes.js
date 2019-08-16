@@ -1,40 +1,40 @@
 export default [
     {
         path:'/',
-        redirect:'/index'
+        redirect:'/psychology/index'
     },
     {
-        path: '/index',
+        path: '/psychology/index',
         name: 'home',
         component: () => import('../views/Home.vue')
     },
     {
-        path: "/author",
+        path: "/psychology/author",
         name: 'Author',
         component: () => import('../views/Author.vue')
     },
     {
-        path:'/upload',
+        path:'/psychology/upload',
         name:'Upload',
         component:()=> import ('../components/Upload.vue')
     },
     {
-        path:'/detail/:id',
+        path:'/psychology/detail/:id',
         name:'Detail',
         component:()=> import ('../views/Detail.vue')
     },
     {
-        path:'/pcenter',
+        path:'/psychology/pcenter',
         name:'PersonCenter',
         component:()=> import ('../views/PersonCenter.vue')
     },
     {
-        path:'/self',
+        path:'/psychology/self',
         name:'/SelfUpload',
         component:()=>import('../views/SelfUpload.vue')
     },
     {
-        path:'/code',
+        path:'/psychology/code',
         name:'Code',
         component:()=>import('../components/Code.vue')
     }
